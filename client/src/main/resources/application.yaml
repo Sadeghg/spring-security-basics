@@ -1,0 +1,35 @@
+
+
+
+server:
+  port: 8080
+
+spring:
+  application.name: backend-client
+  security:
+    oauth2:
+      client:
+        registration:
+          messages-client-oidc:
+            provider: spring
+            client-id: messages-client
+            client-secret: secret
+            client-authentication-method: client_secret_basic
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8080/login/oauth2/code/{registrationId}"
+            scope: openid
+            client-name: messages-client-oidc
+          messages-client-authorization-code:
+            provider: spring
+            client-id: messages-client
+            client-secret: secret
+            client-authentication-method: client_secret_basic
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8080/authorized"
+            scope: openid
+            client-name: messages-client-authorization-code
+        provider:
+          spring:
+            issuer-uri: http://localhost:9000
+
+
